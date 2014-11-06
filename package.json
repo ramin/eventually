@@ -1,0 +1,22 @@
+{
+  "name": "hieroglyph-js",
+  "version": "0.0.3",
+  "description": "hieroglyph expectations and receiver client",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "ramin",
+  "license": "none",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/apartmenttherapy/hieroglyph-js"
+  },
+  "dependencies": {
+    "q": ">= 1.0.1"
+  },
+  "devDependencies": {
+    "mocha": "^2.0.1"
+  }
+}
