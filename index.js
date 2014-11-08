@@ -10,17 +10,20 @@
     buckets: {},
     customizations: {},
     defaults: { timeout: 4000 },
-    _timeout: null,
 
     timeout: function(time) {
-      this.customizations[timeout] = time;
+      this.customizations["timeout"] = time;
       return this;
+    },
+
+    timeoutValue: function() {
+      return this.customizations.timeout || this.defaults.timeout;
     },
 
     startTimeoutCounter: function(deferred) {
       var lock =  setTimeout(function() {
         deferred.reject('timeout');
-      }, this.customizations.timeout || this.defaults.timeout);
+      }, this.timeoutValue());
 
       this.customizations = {};
       return lock;
