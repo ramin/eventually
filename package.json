@@ -1,6 +1,6 @@
 {
   "name": "hieroglyph-js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "hieroglyph expectations and receiver client",
   "main": "index.js",
   "scripts": {
