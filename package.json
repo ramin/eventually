@@ -1,7 +1,7 @@
 {
   "name": "eventually",
   "version": "0.0.5",
-  "description": "expectation things to arrive, eventually",
+  "description": "expect things to arrive, eventually",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
