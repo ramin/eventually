@@ -1,7 +1,7 @@
 {
-  "name": "hieroglyph-js",
-  "version": "0.0.4",
-  "description": "hieroglyph expectations and receiver client",
+  "name": "eventually",
+  "version": "0.0.5",
+  "description": "expectation things to arrive, eventually",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
@@ -11,7 +11,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "http://github.com/apartmenttherapy/hieroglyph-js"
+    "url": "http://github.com/apartmenttherapy/eventually"
   },
   "dependencies": {
     "q": ">= 1.0.1"
