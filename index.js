@@ -73,7 +73,6 @@
       if ( this.buckets[feature] == null ) {
         this.buckets[feature] = value;
       }
-      this.dispatch(feature, value);
     }
   };
 
