@@ -1,7 +1,7 @@
 (function(module){
   'use strict';
-
-  var Q = require("q");
+  var Q = require("q"),
+      ObserverJS = require("observe-js");
 
   var Eventually = {
     registry: {},
@@ -29,6 +29,19 @@
       return lock;
     },
 
+    observe: function(observable) {
+      var _this = this;
+
+      this.buckets = new ObserverJS.ObjectObserver(observable);
+
+      this.buckets.open(function(added, removed, changed, getOldValueFn) {
+        for (var property in added) {
+          _this.dispatch(property, added[property]);
+        }
+      });
+      return this;
+    },
+
     expect: function(feature, doneCallback) {
       if ( feature in this.buckets ) {
 
@@ -48,16 +61,19 @@
       }
     },
 
-    receive: function(feature, value) {
-      if ( this.buckets[feature] == null ) {
-        this.buckets[feature] = value;
-      }
-
+    dispatch: function(feature, value) {
       if ( feature in this.registry ) {
         clearTimeout(this.registry[feature].timeout);
         this.registry[feature].deferred.resolve(value);
         delete this.registry[feature];
       }
+    },
+
+    receive: function(feature, value) {
+      if ( this.buckets[feature] == null ) {
+        this.buckets[feature] = value;
+      }
+      this.dispatch(feature, value);
     }
   };
 
