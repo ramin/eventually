@@ -5,6 +5,7 @@
 
   var Eventually = {
     registry: {},
+    changedTimer: null,
     uuid: "",
     elapsed: 0,
     buckets: {},
@@ -29,6 +30,16 @@
       return lock;
     },
 
+    stopChangedTimer: function(){
+      clearInterval(this.changedTimer);
+    },
+
+    startChangedTimer: function(){
+      this.changedTimer = setInterval(function(){
+        window.Platform.performMicrotaskCheckpoint();
+      }, 400);
+    },
+
     observe: function(observable) {
       var _this = this;
 
@@ -38,13 +49,17 @@
         for (var property in added) {
           _this.dispatch(property, added[property]);
         }
+        _this.stopChangedTimer();
       });
+
+      this.startChangedTimer();
+
       return this;
     },
 
     expect: function(feature, doneCallback) {
-      if ( feature in this.buckets ) {
-
+      if ( feature in this.buckets.value_) {
+        console.log(feature);
         return Q.when(doneCallback(this.buckets[feature]));
 
       } else {

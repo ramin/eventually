@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "q": ">= 1.0.1",
-    "observe-js": ">=0.4.2"
+    "observe-js": ">= 0.4.2"
   },
   "devDependencies": {
     "mocha": "^2.0.1"
