@@ -59,7 +59,6 @@
 
     expect: function(feature, doneCallback) {
       if ( feature in this.buckets.value_) {
-        console.log(feature);
         return Q.when(doneCallback(this.buckets[feature]));
 
       } else {
