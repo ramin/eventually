@@ -46,12 +46,12 @@ describe('Eventually', function(){
   describe('#expect', function(){
     it('should add the expectation to the registry', function(){
       assert.deepEqual(eventually.registry, {});
-      eventually.expect("jordan", function(bucket) {});
+      eventually.observe({}).expect("jordan", function(bucket) {});
       assert.equal(eventually.registry.hasOwnProperty("jordan"), true);
     });
 
     it('should return a promise', function(){
-      var promise = eventually.expect("pippen", function(bucket) {});
+      var promise = eventually.observe({}).expect("pippen", function(bucket) {});
 
       assert.equal(promise.then  !== undefined, true);
       assert.equal(promise.done  !== undefined, true);
@@ -61,7 +61,7 @@ describe('Eventually', function(){
 
   describe('#receive', function(){
     it('should add the feature and value to buckets if missing', function(){
-      assert.deepEqual(eventually.buckets, {});
+      eventually.buckets = {}; // reset buckets
       eventually.receive("jordan", 23);
       assert.deepEqual(eventually.buckets, { "jordan" : 23 });
     });
